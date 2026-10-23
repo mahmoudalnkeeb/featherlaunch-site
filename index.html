@@ -68,6 +68,12 @@
   }
   a { color: var(--accent); }
   code { font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
+  .shot { margin: 0 0 8px; }
+  .shot img {
+    display: block; width: 100%; height: auto;
+    border-radius: 10px; border: 1px solid var(--border);
+  }
+  .shot figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; text-align: center; }
   footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
 </style>
 </head>
@@ -81,6 +87,12 @@
     <p class="tagline">A lightweight Minecraft: Java Edition launcher for low-end Windows PCs, written in Rust.</p>
   </header>
 
+  <figure class="shot">
+    <img src="screenshot.png" width="982" height="652"
+      alt="FeatherLaunch window: an instance's mod browser listing Modrinth mods with icons, with Sodium selected and an Install button">
+    <figcaption>Browsing Modrinth mods for a Fabric 1.21.10 instance.</figcaption>
+  </figure>
+
   <section>
     <h2>What it is</h2>
     <p>FeatherLaunch is a free, independent desktop launcher. It lets players sign in with their own
@@ -91,13 +103,26 @@
   <section>
     <h2>Features</h2>
     <div class="grid">
-      <div class="card"><strong>Instances</strong><span>Separate game folders, each with its own version, memory and Java settings.</span></div>
+      <div class="card"><strong>Instances</strong><span>Separate game folders with their own version, memory, Java and icon. Group, search, copy and track play time.</span></div>
       <div class="card"><strong>Mod loaders</strong><span>Vanilla, Fabric, Quilt, Forge and NeoForge.</span></div>
-      <div class="card"><strong>Modrinth</strong><span>Install mods, resource packs, shaders and modpacks, with dependencies and updates.</span></div>
-      <div class="card"><strong>Microsoft sign-in</strong><span>Stays signed in. Shows your skin and lets you change it.</span></div>
+      <div class="card"><strong>Modrinth</strong><span>Browse mods, resource packs and shaders with icons. Install with dependencies, update, enable or disable.</span></div>
+      <div class="card"><strong>Modpacks</strong><span>Install Modrinth modpacks in one click, or import a <code>.mrpack</code> file. The pack's icon comes along.</span></div>
+      <div class="card"><strong>Microsoft sign-in</strong><span>Stays signed in. Shows your skin and lets you change it. Offline accounts too.</span></div>
       <div class="card"><strong>Automatic Java</strong><span>Finds or downloads the right Java for each Minecraft version.</span></div>
-      <div class="card"><strong>Game console</strong><span>Live logs, crash reports and a stop button.</span></div>
+      <div class="card"><strong>Game console</strong><span>Live logs with filtering, crash reports and a stop button.</span></div>
+      <div class="card"><strong>Portable</strong><span>One small <code>.exe</code>, no installer. Can run from a USB stick.</span></div>
     </div>
+  </section>
+
+  <section>
+    <h2>Built for slow PCs</h2>
+    <ul>
+      <li>Uses about <strong>50 MB of RAM</strong>, and the program itself is about <strong>6 MB</strong>.</li>
+      <li>Draws only when something changes, so it sits at almost 0% CPU while idle.</li>
+      <li>Runs on old integrated graphics such as Intel HD 4000/4600 (OpenGL).</li>
+      <li>Game files and icons are shared between instances and cached, so nothing downloads twice.</li>
+      <li>Minimizes itself while you play and uses Java memory settings tuned for low-end CPUs.</li>
+    </ul>
   </section>
 
   <section>
