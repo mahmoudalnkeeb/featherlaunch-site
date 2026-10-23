@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FeatherLaunch</title>
+<meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows PCs.">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1d1f22;
+    --muted: #5d636b;
+    --border: #e2e3e0;
+    --accent: #2f6fbf;
+    --accent-soft: #e6eef9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1c1d20;
+      --surface: #25272b;
+      --text: #e9eaec;
+      --muted: #a2a7ae;
+      --border: #34373c;
+      --accent: #6ea4e8;
+      --accent-soft: #263445;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1c1d20;
+    --surface: #25272b;
+    --text: #e9eaec;
+    --muted: #a2a7ae;
+    --border: #34373c;
+    --accent: #6ea4e8;
+    --accent-soft: #263445;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+  header { margin-bottom: 40px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .logo {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center; font-weight: 700; font-size: 24px;
+  }
+  h1 { font-size: 34px; margin: 0; letter-spacing: -0.02em; }
+  .tagline { color: var(--muted); font-size: 18px; margin: 14px 0 0; }
+  h2 { font-size: 20px; margin: 40px 0 12px; }
+  p, li { color: var(--text); }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .card strong { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 15px; }
+  .note {
+    background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 15px;
+  }
+  a { color: var(--accent); }
+  code { font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">F</div>
+      <h1>FeatherLaunch</h1>
+    </div>
+    <p class="tagline">A lightweight Minecraft: Java Edition launcher for low-end Windows PCs, written in Rust.</p>
+  </header>
+
+  <section>
+    <h2>What it is</h2>
+    <p>FeatherLaunch is a free, independent desktop launcher. It lets players sign in with their own
+      Microsoft account, manage several game installations, and add mods from Modrinth, while using
+      as little memory and CPU as possible so older computers have more left over for the game.</p>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <div class="grid">
+      <div class="card"><strong>Instances</strong><span>Separate game folders, each with its own version, memory and Java settings.</span></div>
+      <div class="card"><strong>Mod loaders</strong><span>Vanilla, Fabric, Quilt, Forge and NeoForge.</span></div>
+      <div class="card"><strong>Modrinth</strong><span>Install mods, resource packs, shaders and modpacks, with dependencies and updates.</span></div>
+      <div class="card"><strong>Microsoft sign-in</strong><span>Stays signed in. Shows your skin and lets you change it.</span></div>
+      <div class="card"><strong>Automatic Java</strong><span>Finds or downloads the right Java for each Minecraft version.</span></div>
+      <div class="card"><strong>Game console</strong><span>Live logs, crash reports and a stop button.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How sign-in works</h2>
+    <p>FeatherLaunch uses Microsoft's standard <em>device code</em> sign-in. The launcher shows a short
+      code, and you enter it on Microsoft's own website in your browser. The launcher never sees your
+      password. After sign-in it uses Xbox Live and the Minecraft services API only to:</p>
+    <ul>
+      <li>confirm that your account owns Minecraft: Java Edition,</li>
+      <li>read your Minecraft username, UUID and skin,</li>
+      <li>start the game as you, and change your skin when you ask it to.</li>
+    </ul>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy</h2>
+    <ul>
+      <li><strong>No accounts, analytics or telemetry.</strong> FeatherLaunch has no servers of its own and collects no data.</li>
+      <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <strong>Windows Credential Manager</strong>.
+        Minecraft access tokens are kept in memory only.</li>
+      <li>Removing an account in the launcher deletes its stored credential.</li>
+      <li>The launcher connects only to the services it needs: Microsoft / Xbox Live and Mojang (sign-in, game files),
+        Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Download</h2>
+    <p class="note">FeatherLaunch is in early development. Public downloads will be listed on this page when the first release is ready.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>FeatherLaunch is developed by <a href="https://github.com/mahmoudalnkeeb">mahmoudalnkeeb</a> on GitHub.
+      For questions or issues, open an issue in <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/issues">this site's repository</a>.</p>
+  </section>
+
+  <footer>
+    NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+    Minecraft is a trademark of Mojang Synergies AB.
+  </footer>
+</main>
+</body>
+</html>
