@@ -8,146 +8,7 @@
 <meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows and Linux PCs.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-256.png">
-<style>
-  /* Same tokens as the launcher (DESIGN.md in the FeatherLaunch repo). */
-  :root {
-    --bg: #0e0f11;
-    --surface: #16171a;
-    --raised: #1e2024;
-    --hover: #26282d;
-    --border: #26282d;
-    --text: #ecedef;
-    --muted: #9095a0;
-    --faint: #5e626b;
-    --accent: #74dde8;
-    --accent-hover: #9ae8f0;
-    --on-accent: #0b1214;
-    --ok: #5dd39e;
-    --r-md: 10px;
-    --r-lg: 14px;
-    --r-xl: 18px;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-
-  /* Top bar, like the launcher's title bar. */
-  .bar {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(14, 15, 17, 0.88);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  .bar .wrap { display: flex; align-items: center; gap: 12px; height: 56px; }
-  .mark { width: 26px; height: 26px; flex: none; display: block; }
-  .name { font-weight: 600; font-size: 15px; }
-  .bar nav { margin-left: auto; display: flex; gap: 4px; }
-  .bar nav a {
-    color: var(--muted); font-size: 14px; padding: 6px 12px; border-radius: 999px;
-  }
-  .bar nav a:hover { background: var(--hover); color: var(--text); text-decoration: none; }
-  @media (max-width: 560px) { .bar nav { display: none; } }
-
-  /* Pills and captions. */
-  .caption {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 10px;
-  }
-  .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    height: 40px; padding: 0 18px; border-radius: 999px;
-    font-size: 15px; font-weight: 600; border: 0;
-  }
-  .pill:hover { text-decoration: none; }
-  .pill.primary { background: var(--accent); color: var(--on-accent); }
-  .pill.primary:hover { background: var(--accent-hover); }
-  .pill.secondary { background: var(--raised); color: var(--text); font-weight: 400; }
-  .pill.secondary:hover { background: var(--hover); }
-  .pill svg { width: 16px; height: 16px; }
-
-  /* Hero. */
-  .hero { padding: 64px 0 32px; text-align: center; position: relative; }
-  .hero::before {
-    content: ""; position: absolute; inset: -40px 0 auto; height: 420px; z-index: -1;
-    background: radial-gradient(60% 60% at 50% 30%, rgba(116, 221, 232, 0.12), transparent 70%);
-  }
-  .hero h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.1; margin: 0; font-weight: 600; letter-spacing: -0.02em; }
-  .hero .tagline { color: var(--muted); font-size: 18px; max-width: 600px; margin: 16px auto 28px; }
-  .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--raised); color: var(--muted); font-size: 13px;
-    height: 30px; padding: 0 12px; border-radius: 999px;
-  }
-  .chip b { color: var(--text); font-weight: 600; }
-
-  .shot { margin: 40px auto 0; max-width: 1060px; }
-  .shot img {
-    display: block; width: 100%; height: auto;
-    border-radius: var(--r-xl); border: 1px solid var(--border);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-  }
-  .shot figcaption { color: var(--faint); font-size: 13px; margin-top: 12px; text-align: center; }
-
-  /* Sections. */
-  section { padding: 56px 0 8px; }
-  h2 { font-size: 28px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
-  .lead { color: var(--muted); max-width: 680px; margin: 0 0 24px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
-  .card {
-    background: var(--surface); border-radius: var(--r-lg); padding: 20px;
-  }
-  .card .icon {
-    width: 36px; height: 36px; border-radius: var(--r-md);
-    background: rgba(116, 221, 232, 0.12); color: var(--accent);
-    display: grid; place-items: center; margin-bottom: 14px;
-  }
-  .card .icon svg { width: 18px; height: 18px; }
-  .card h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
-  .card p { color: var(--muted); font-size: 14.5px; margin: 0; }
-
-  .split { display: grid; grid-template-columns: 1fr 1.25fr; gap: 32px; align-items: center; }
-  .split img { width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); display: block; }
-  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
-
-  ul.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-  ul.list li {
-    background: var(--surface); border-radius: var(--r-md); padding: 12px 16px 12px 44px;
-    position: relative; color: var(--text); font-size: 15px;
-  }
-  ul.list li::before {
-    content: ""; position: absolute; left: 18px; top: 19px;
-    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-  }
-  ul.list li span { color: var(--muted); }
-  .panel { background: var(--surface); border-radius: var(--r-xl); padding: 28px; }
-  .panel p { color: var(--muted); margin: 0 0 12px; }
-  .panel p:last-child { margin-bottom: 0; }
-  code {
-    font: 13px/1 Consolas, ui-monospace, monospace; color: var(--text);
-    background: var(--raised); border-radius: 6px; padding: 3px 6px;
-  }
-  .note {
-    display: flex; gap: 14px; align-items: center;
-    background: var(--surface); border-radius: var(--r-lg); padding: 18px 20px; color: var(--muted);
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: none; }
-
-  footer {
-    margin-top: 64px; padding: 28px 0 40px; border-top: 1px solid var(--border);
-    color: var(--faint); font-size: 13px;
-  }
-  footer .wrap { display: flex; gap: 16px; justify-content: space-between; flex-wrap: wrap; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="bar">
@@ -293,6 +154,7 @@
         <li>Removing an account in the launcher deletes its stored credential.</li>
         <li>The launcher connects only to the services it needs: <span>Microsoft / Xbox Live and Mojang (sign-in, game files), Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</span></li>
       </ul>
+      <p style="margin-top: 16px"><a class="pill secondary" href="privacy.html">Read the full privacy policy</a></p>
     </div>
   </section>
 
@@ -301,7 +163,7 @@
       <p class="caption">Download</p>
       <h2>Coming soon</h2>
       <div class="note"><span class="dot" aria-hidden="true"></span>
-        FeatherLaunch is in early development. Downloads for Windows (<code>.exe</code>) and Linux (<code>.tar.gz</code>, X11 or Wayland) will be listed here when the first release is ready.</div>
+        <span>FeatherLaunch is in early development. Downloads for Windows (<code>.exe</code>) and Linux (<code>.tar.gz</code>, X11 or Wayland) will be listed here when the first release is ready.</span></div>
     </div>
   </section>
 
@@ -319,7 +181,7 @@
   <div class="wrap">
     <span>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
       Minecraft is a trademark of Mojang Synergies AB.</span>
-    <span>FeatherLaunch</span>
+    <span><a href="privacy.html">Privacy Policy</a></span>
   </div>
 </footer>
 </body>

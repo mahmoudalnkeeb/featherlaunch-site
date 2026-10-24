@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Privacy Policy · FeatherLaunch</title>
+<meta name="description" content="How FeatherLaunch handles your data: what stays on your computer and which services it connects to.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-256.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a href="./"><img class="mark" src="icon.svg" width="26" height="26" alt="FeatherLaunch home"></a>
+    <a class="name" href="./" style="color: var(--text)">FeatherLaunch</a>
+    <nav aria-label="Sections">
+      <a href="./#features">Features</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="./#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="doc">
+  <p class="caption">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective October 25, 2026</p>
+
+  <p>FeatherLaunch is a free desktop launcher for Minecraft: Java Edition, made by an independent
+    developer (<a href="https://github.com/mahmoudalnkeeb">mahmoudalnkeeb</a>). This policy explains
+    what data the launcher handles and where it goes. The short version: <b>FeatherLaunch has no
+    servers of its own, collects nothing, and keeps your data on your computer.</b> It talks only to
+    the services needed to sign you in, download the game and install mods.</p>
+
+  <h2>What we collect</h2>
+  <p>Nothing. FeatherLaunch has no accounts of its own, no analytics, no telemetry, no crash
+    reporting and no advertising. The developer never receives your sign-in, your game data or
+    information about how you use the launcher.</p>
+
+  <h2>What stays on your computer</h2>
+  <p>The launcher stores the following locally, in its data folder
+    (<code>%APPDATA%\featherlaunch</code> on Windows, <code>~/.config/featherlaunch</code> on Linux,
+    or a <code>data</code> folder next to the program in portable mode):</p>
+  <ul>
+    <li><b>Accounts:</b> your Minecraft username, profile UUID and skin address.</li>
+    <li><b>Settings:</b> memory, Java and launcher preferences.</li>
+    <li><b>Instances:</b> your game folders, worlds, mods, resource packs, screenshots and logs.</li>
+    <li><b>Caches:</b> downloaded game files, Java runtimes, mod icons and skins.</li>
+  </ul>
+  <p>Your <b>Microsoft sign-in</b> is kept as a refresh token in your operating system's secure
+    credential store: <b>Windows Credential Manager</b>, or the <b>Secret Service</b> (GNOME Keyring,
+    KWallet) on Linux. It is never written to the launcher's files. Minecraft access tokens are kept
+    only in memory while the launcher runs, and are hidden from the game log shown in the launcher.
+    Removing an account deletes its stored credential. Deleting the data folder removes everything
+    else.</p>
+
+  <h2>How sign-in works</h2>
+  <p>FeatherLaunch uses Microsoft's device code sign-in. You enter a short code on Microsoft's own
+    website, so the launcher <b>never sees your password</b>. After you approve it, the launcher uses
+    Xbox Live and Minecraft services to confirm that your account owns Minecraft: Java Edition, read
+    your username, UUID and skin, start the game as you, and change your skin when you ask it to.
+    Offline accounts send nothing anywhere.</p>
+
+  <h2>Services the launcher connects to</h2>
+  <p>To work, FeatherLaunch sends requests directly from your computer to these services. Each one
+    sees your IP address and the request, and handles it under its own privacy policy.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Service</th><th>What is sent</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Microsoft and Xbox Live</td><td>Sign-in codes and tokens for your account</td><td>Signing you in (device code, Xbox Live, XSTS)</td></tr>
+        <tr><td>Minecraft services (Mojang)</td><td>Your access token; a skin image if you upload one</td><td>Checking ownership, reading your profile, changing your skin</td></tr>
+        <tr><td>Mojang download servers</td><td>Requests for game files</td><td>Downloading Minecraft, libraries and assets</td></tr>
+        <tr><td>Modrinth</td><td>Search terms, Minecraft version and loader; file hashes of installed mods</td><td>Browsing and installing mods and modpacks, checking for updates, showing names and icons</td></tr>
+        <tr><td>Fabric, Quilt, Forge and NeoForge</td><td>Requests for loader versions and files</td><td>Installing mod loaders</td></tr>
+        <tr><td>Eclipse Adoptium (and GitHub, which hosts its files)</td><td>Requests for a Java runtime</td><td>Downloading Java when none is installed</td></tr>
+        <tr><td>Modpack file hosts</td><td>Requests for the files a modpack lists</td><td>Installing a modpack you chose</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Requests identify the launcher by name and version (its user agent). They do not include an ID
+    that tracks you between sessions. When you start the game, Minecraft itself connects to Mojang and
+    to any servers you join, as it does with any launcher.</p>
+  <p>Their policies: <a href="https://privacy.microsoft.com/privacystatement">Microsoft</a> (which
+    also covers Xbox Live and Mojang), <a href="https://modrinth.com/legal/privacy">Modrinth</a>,
+    <a href="https://www.eclipse.org/legal/privacy/">Eclipse Foundation</a> and
+    <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a>.</p>
+
+  <h2>This website</h2>
+  <p>This site is a static page hosted on GitHub Pages. It sets no cookies and runs no analytics or
+    trackers. GitHub may log visits (such as IP addresses) to operate and secure the service, as
+    described in its privacy statement.</p>
+
+  <h2>Children</h2>
+  <p>FeatherLaunch does not collect personal information from anyone, including children. Microsoft
+    account and Minecraft age rules still apply to signing in.</p>
+
+  <h2>Your choices</h2>
+  <ul>
+    <li>Remove an account in the launcher to delete its stored sign-in.</li>
+    <li>Delete the data folder to remove all local launcher data.</li>
+    <li>To review or delete data held by Microsoft, Mojang or Modrinth, use their account and privacy
+      tools; FeatherLaunch cannot access it.</li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>If the launcher starts handling data differently, this page will be updated first and the date
+    at the top will change.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: open an issue in
+    <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/issues">this site's repository</a>.</p>
+
+  <p style="margin-top: 32px"><a class="back" href="./">← Back to FeatherLaunch</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+      Minecraft is a trademark of Mojang Synergies AB.</span>
+    <span><a href="privacy.html">Privacy Policy</a></span>
+  </div>
+</footer>
+</body>
+</html>
