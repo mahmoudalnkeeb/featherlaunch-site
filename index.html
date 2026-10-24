@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>FeatherLaunch</title>
-<meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows PCs.">
+<meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows and Linux PCs.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-256.png">
 <style>
@@ -166,7 +166,7 @@
   <div class="wrap hero">
     <p class="caption">Minecraft: Java Edition launcher</p>
     <h1>Your whole library,<br>light enough for any PC.</h1>
-    <p class="tagline">FeatherLaunch is a free launcher written in Rust for low-end Windows PCs.
+    <p class="tagline">FeatherLaunch is a free launcher written in Rust for low-end Windows and Linux PCs.
       Mods, modpacks and Microsoft sign-in, without slowing your game down.</p>
     <div class="actions">
       <a class="pill primary" href="#download">
@@ -180,6 +180,7 @@
       <span class="chip"><b>~6 MB</b> program</span>
       <span class="chip"><b>0%</b> CPU when idle</span>
       <span class="chip">Runs on <b>Intel HD 4000</b></span>
+      <span class="chip"><b>Windows</b> · <b>Linux</b></span>
     </div>
     <figure class="shot">
       <img src="screenshot.png" width="1060" height="680"
@@ -233,7 +234,7 @@
         <div class="card">
           <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2 4h4l1.5 1.5H14v7H2z"/></svg></div>
           <h3>Portable</h3>
-          <p>One small <code>.exe</code>, no installer. Can run from a USB stick.</p>
+          <p>One small program, no installer: an <code>.exe</code> on Windows, a single binary on Linux. Can run from a USB stick.</p>
         </div>
       </div>
     </div>
@@ -258,7 +259,7 @@
       <p class="caption">Built for slow PCs</p>
       <h2>Light by design</h2>
       <ul class="list">
-        <li>Uses about <b>50 MB of RAM</b>, and the program itself is about <b>6 MB</b>. <span>Fonts come from Windows and icons are drawn in code, so nothing extra is bundled.</span></li>
+        <li>Uses about <b>50 MB of RAM</b>, and the program itself is about <b>6 MB</b>. <span>Fonts come from the system and icons are drawn in code, so nothing extra is bundled.</span></li>
         <li>Draws only when something changes. <span>It sits at almost 0% CPU while idle.</span></li>
         <li>Runs on old integrated graphics such as Intel HD 4000/4600. <span>OpenGL, no shadows, no animation loops.</span></li>
         <li>Game files and icons are shared between instances and cached. <span>Nothing downloads twice.</span></li>
@@ -288,7 +289,7 @@
       <h2>Your data stays on your PC</h2>
       <ul class="list">
         <li><b>No accounts, analytics or telemetry.</b> <span>FeatherLaunch has no servers of its own and collects no data.</span></li>
-        <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <b>Windows Credential Manager</b>. <span>Minecraft access tokens are kept in memory only.</span></li>
+        <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <b>Windows Credential Manager</b>, or on Linux in your desktop's keyring (GNOME Keyring, KWallet). <span>Minecraft access tokens are kept in memory only.</span></li>
         <li>Removing an account in the launcher deletes its stored credential.</li>
         <li>The launcher connects only to the services it needs: <span>Microsoft / Xbox Live and Mojang (sign-in, game files), Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</span></li>
       </ul>
@@ -300,7 +301,7 @@
       <p class="caption">Download</p>
       <h2>Coming soon</h2>
       <div class="note"><span class="dot" aria-hidden="true"></span>
-        FeatherLaunch is in early development. Public downloads will be listed here when the first release is ready.</div>
+        FeatherLaunch is in early development. Downloads for Windows (<code>.exe</code>) and Linux (<code>.tar.gz</code>, X11 or Wayland) will be listed here when the first release is ready.</div>
     </div>
   </section>
 
