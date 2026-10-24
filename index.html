@@ -3,167 +3,323 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>FeatherLaunch</title>
 <meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows PCs.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-256.png">
 <style>
+  /* Same tokens as the launcher (DESIGN.md in the FeatherLaunch repo). */
   :root {
-    --bg: #f7f7f5;
-    --surface: #ffffff;
-    --text: #1d1f22;
-    --muted: #5d636b;
-    --border: #e2e3e0;
-    --accent: #2f6fbf;
-    --accent-soft: #e6eef9;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1c1d20;
-      --surface: #25272b;
-      --text: #e9eaec;
-      --muted: #a2a7ae;
-      --border: #34373c;
-      --accent: #6ea4e8;
-      --accent-soft: #263445;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #1c1d20;
-    --surface: #25272b;
-    --text: #e9eaec;
-    --muted: #a2a7ae;
-    --border: #34373c;
-    --accent: #6ea4e8;
-    --accent-soft: #263445;
+    --bg: #0e0f11;
+    --surface: #16171a;
+    --raised: #1e2024;
+    --hover: #26282d;
+    --border: #26282d;
+    --text: #ecedef;
+    --muted: #9095a0;
+    --faint: #5e626b;
+    --accent: #74dde8;
+    --accent-hover: #9ae8f0;
+    --on-accent: #0b1214;
+    --ok: #5dd39e;
+    --r-md: 10px;
+    --r-lg: 14px;
+    --r-xl: 18px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
-  header { margin-bottom: 40px; }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .logo {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: var(--accent); color: #fff;
-    display: grid; place-items: center; font-weight: 700; font-size: 24px;
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* Top bar, like the launcher's title bar. */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(14, 15, 17, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
   }
-  h1 { font-size: 34px; margin: 0; letter-spacing: -0.02em; }
-  .tagline { color: var(--muted); font-size: 18px; margin: 14px 0 0; }
-  h2 { font-size: 20px; margin: 40px 0 12px; }
-  p, li { color: var(--text); }
-  ul { padding-left: 20px; }
-  li { margin: 6px 0; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 14px 16px;
+  .bar .wrap { display: flex; align-items: center; gap: 12px; height: 56px; }
+  .mark { width: 26px; height: 26px; flex: none; display: block; }
+  .name { font-weight: 600; font-size: 15px; }
+  .bar nav { margin-left: auto; display: flex; gap: 4px; }
+  .bar nav a {
+    color: var(--muted); font-size: 14px; padding: 6px 12px; border-radius: 999px;
   }
-  .card strong { display: block; margin-bottom: 4px; }
-  .card span { color: var(--muted); font-size: 15px; }
-  .note {
-    background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 15px;
+  .bar nav a:hover { background: var(--hover); color: var(--text); text-decoration: none; }
+  @media (max-width: 560px) { .bar nav { display: none; } }
+
+  /* Pills and captions. */
+  .caption {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 10px;
   }
-  a { color: var(--accent); }
-  code { font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; }
-  .shot { margin: 0 0 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 40px; padding: 0 18px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; border: 0;
+  }
+  .pill:hover { text-decoration: none; }
+  .pill.primary { background: var(--accent); color: var(--on-accent); }
+  .pill.primary:hover { background: var(--accent-hover); }
+  .pill.secondary { background: var(--raised); color: var(--text); font-weight: 400; }
+  .pill.secondary:hover { background: var(--hover); }
+  .pill svg { width: 16px; height: 16px; }
+
+  /* Hero. */
+  .hero { padding: 64px 0 32px; text-align: center; position: relative; }
+  .hero::before {
+    content: ""; position: absolute; inset: -40px 0 auto; height: 420px; z-index: -1;
+    background: radial-gradient(60% 60% at 50% 30%, rgba(116, 221, 232, 0.12), transparent 70%);
+  }
+  .hero h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.1; margin: 0; font-weight: 600; letter-spacing: -0.02em; }
+  .hero .tagline { color: var(--muted); font-size: 18px; max-width: 600px; margin: 16px auto 28px; }
+  .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--raised); color: var(--muted); font-size: 13px;
+    height: 30px; padding: 0 12px; border-radius: 999px;
+  }
+  .chip b { color: var(--text); font-weight: 600; }
+
+  .shot { margin: 40px auto 0; max-width: 1060px; }
   .shot img {
     display: block; width: 100%; height: auto;
-    border-radius: 10px; border: 1px solid var(--border);
+    border-radius: var(--r-xl); border: 1px solid var(--border);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   }
-  .shot figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; text-align: center; }
-  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+  .shot figcaption { color: var(--faint); font-size: 13px; margin-top: 12px; text-align: center; }
+
+  /* Sections. */
+  section { padding: 56px 0 8px; }
+  h2 { font-size: 28px; font-weight: 600; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .lead { color: var(--muted); max-width: 680px; margin: 0 0 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--surface); border-radius: var(--r-lg); padding: 20px;
+  }
+  .card .icon {
+    width: 36px; height: 36px; border-radius: var(--r-md);
+    background: rgba(116, 221, 232, 0.12); color: var(--accent);
+    display: grid; place-items: center; margin-bottom: 14px;
+  }
+  .card .icon svg { width: 18px; height: 18px; }
+  .card h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  .card p { color: var(--muted); font-size: 14.5px; margin: 0; }
+
+  .split { display: grid; grid-template-columns: 1fr 1.25fr; gap: 32px; align-items: center; }
+  .split img { width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); display: block; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+
+  ul.list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  ul.list li {
+    background: var(--surface); border-radius: var(--r-md); padding: 12px 16px 12px 44px;
+    position: relative; color: var(--text); font-size: 15px;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 18px; top: 19px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  }
+  ul.list li span { color: var(--muted); }
+  .panel { background: var(--surface); border-radius: var(--r-xl); padding: 28px; }
+  .panel p { color: var(--muted); margin: 0 0 12px; }
+  .panel p:last-child { margin-bottom: 0; }
+  code {
+    font: 13px/1 Consolas, ui-monospace, monospace; color: var(--text);
+    background: var(--raised); border-radius: 6px; padding: 3px 6px;
+  }
+  .note {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--surface); border-radius: var(--r-lg); padding: 18px 20px; color: var(--muted);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: none; }
+
+  footer {
+    margin-top: 64px; padding: 28px 0 40px; border-top: 1px solid var(--border);
+    color: var(--faint); font-size: 13px;
+  }
+  footer .wrap { display: flex; gap: 16px; justify-content: space-between; flex-wrap: wrap; }
 </style>
 </head>
 <body>
+<header class="bar">
+  <div class="wrap">
+    <img class="mark" src="icon.svg" width="26" height="26" alt="">
+    <span class="name">FeatherLaunch</span>
+    <nav aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <header>
-    <div class="brand">
-      <div class="logo" aria-hidden="true">F</div>
-      <h1>FeatherLaunch</h1>
+  <div class="wrap hero">
+    <p class="caption">Minecraft: Java Edition launcher</p>
+    <h1>Your whole library,<br>light enough for any PC.</h1>
+    <p class="tagline">FeatherLaunch is a free launcher written in Rust for low-end Windows PCs.
+      Mods, modpacks and Microsoft sign-in, without slowing your game down.</p>
+    <div class="actions">
+      <a class="pill primary" href="#download">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
+        Download
+      </a>
+      <a class="pill secondary" href="#features">See features</a>
     </div>
-    <p class="tagline">A lightweight Minecraft: Java Edition launcher for low-end Windows PCs, written in Rust.</p>
-  </header>
+    <div class="chips">
+      <span class="chip"><b>~50 MB</b> RAM</span>
+      <span class="chip"><b>~6 MB</b> program</span>
+      <span class="chip"><b>0%</b> CPU when idle</span>
+      <span class="chip">Runs on <b>Intel HD 4000</b></span>
+    </div>
+    <figure class="shot">
+      <img src="screenshot.png" width="1060" height="680"
+        alt="FeatherLaunch library: a dark window with a Continue playing banner for the Fabulously Optimized modpack, a Play button, and the instance card below">
+      <figcaption>The library, with a Fabulously Optimized modpack installed from Modrinth.</figcaption>
+    </figure>
+  </div>
 
-  <figure class="shot">
-    <img src="screenshot.png" width="982" height="652"
-      alt="FeatherLaunch window: an instance's mod browser listing Modrinth mods with icons, with Sodium selected and an Install button">
-    <figcaption>Browsing Modrinth mods for a Fabric 1.21.10 instance.</figcaption>
-  </figure>
-
-  <section>
-    <h2>What it is</h2>
-    <p>FeatherLaunch is a free, independent desktop launcher. It lets players sign in with their own
-      Microsoft account, manage several game installations, and add mods from Modrinth, while using
-      as little memory and CPU as possible so older computers have more left over for the game.</p>
-  </section>
-
-  <section>
-    <h2>Features</h2>
-    <div class="grid">
-      <div class="card"><strong>Instances</strong><span>Separate game folders with their own version, memory, Java and icon. Group, search, copy and track play time.</span></div>
-      <div class="card"><strong>Mod loaders</strong><span>Vanilla, Fabric, Quilt, Forge and NeoForge.</span></div>
-      <div class="card"><strong>Modrinth</strong><span>Browse mods, resource packs and shaders with icons. Install with dependencies, update, enable or disable.</span></div>
-      <div class="card"><strong>Modpacks</strong><span>Install Modrinth modpacks in one click, or import a <code>.mrpack</code> file. The pack's icon comes along.</span></div>
-      <div class="card"><strong>Microsoft sign-in</strong><span>Stays signed in. Shows your skin and lets you change it. Offline accounts too.</span></div>
-      <div class="card"><strong>Automatic Java</strong><span>Finds or downloads the right Java for each Minecraft version.</span></div>
-      <div class="card"><strong>Game console</strong><span>Live logs with filtering, crash reports and a stop button.</span></div>
-      <div class="card"><strong>Portable</strong><span>One small <code>.exe</code>, no installer. Can run from a USB stick.</span></div>
+  <section id="features">
+    <div class="wrap">
+      <p class="caption">Features</p>
+      <h2>Everything you need, nothing you don't</h2>
+      <p class="lead">FeatherLaunch covers what players use launchers like Prism for, in a quiet
+        game-library interface that keeps memory and CPU free for Minecraft.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1.5"/><rect x="9" y="2" width="5" height="5" rx="1.5"/><rect x="2" y="9" width="5" height="5" rx="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.5"/></svg></div>
+          <h3>Instances</h3>
+          <p>Separate game folders with their own version, memory, Java and icon. Group, search, duplicate and track play time.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 5h3V3.5l2-1 2 1V5h3v3h-1.5v2H13v3H3z"/></svg></div>
+          <h3>Mod loaders</h3>
+          <p>Vanilla, Fabric, Quilt, Forge and NeoForge, installed for you.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.2"/><path d="m10.2 10.2 3.3 3.3"/></svg></div>
+          <h3>Modrinth</h3>
+          <p>Browse mods, resource packs and shaders with icons. Install with dependencies, update, enable or disable.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></div>
+          <h3>Modpacks</h3>
+          <p>Install Modrinth modpacks in one click, or import a <code>.mrpack</code> file. The pack's icon comes along.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="5.5" r="2.8"/><path d="M2.5 14l1-3 2.5-1.2h4l2.5 1.2 1 3"/></svg></div>
+          <h3>Microsoft sign-in</h3>
+          <p>Stays signed in. Shows your skin and lets you change it. Offline accounts too.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.2"/><circle cx="8" cy="8" r="4.6"/></svg></div>
+          <h3>Automatic Java</h3>
+          <p>Finds or downloads the right Java for each Minecraft version.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="2"/><path d="M5 6.5 7 8 5 9.5M8.5 10H11"/></svg></div>
+          <h3>Game log</h3>
+          <p>Live logs with filtering, crash reports and a stop button, right on the instance page.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2 4h4l1.5 1.5H14v7H2z"/></svg></div>
+          <h3>Portable</h3>
+          <p>One small <code>.exe</code>, no installer. Can run from a USB stick.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section>
-    <h2>Built for slow PCs</h2>
-    <ul>
-      <li>Uses about <strong>50 MB of RAM</strong>, and the program itself is about <strong>6 MB</strong>.</li>
-      <li>Draws only when something changes, so it sits at almost 0% CPU while idle.</li>
-      <li>Runs on old integrated graphics such as Intel HD 4000/4600 (OpenGL).</li>
-      <li>Game files and icons are shared between instances and cached, so nothing downloads twice.</li>
-      <li>Minimizes itself while you play and uses Java memory settings tuned for low-end CPUs.</li>
-    </ul>
+    <div class="wrap split">
+      <div>
+        <p class="caption">Mods</p>
+        <h2>Your mods, at a glance</h2>
+        <p class="lead">Every instance has its own page for settings, mods, resource packs, shaders,
+          worlds and the game log. Mods show their real names and icons, even ones you added by hand,
+          and can be switched off without deleting them.</p>
+      </div>
+      <img src="mods.png" width="1060" height="680" loading="lazy"
+        alt="The instance page for Fabulously Optimized: tabs for Settings, Mods, Resource packs, Shaders, Worlds and Log, and a list of 46 installed mods with icons and on/off switches">
+    </div>
   </section>
 
   <section>
-    <h2>How sign-in works</h2>
-    <p>FeatherLaunch uses Microsoft's standard <em>device code</em> sign-in. The launcher shows a short
-      code, and you enter it on Microsoft's own website in your browser. The launcher never sees your
-      password. After sign-in it uses Xbox Live and the Minecraft services API only to:</p>
-    <ul>
-      <li>confirm that your account owns Minecraft: Java Edition,</li>
-      <li>read your Minecraft username, UUID and skin,</li>
-      <li>start the game as you, and change your skin when you ask it to.</li>
-    </ul>
+    <div class="wrap">
+      <p class="caption">Built for slow PCs</p>
+      <h2>Light by design</h2>
+      <ul class="list">
+        <li>Uses about <b>50 MB of RAM</b>, and the program itself is about <b>6 MB</b>. <span>Fonts come from Windows and icons are drawn in code, so nothing extra is bundled.</span></li>
+        <li>Draws only when something changes. <span>It sits at almost 0% CPU while idle.</span></li>
+        <li>Runs on old integrated graphics such as Intel HD 4000/4600. <span>OpenGL, no shadows, no animation loops.</span></li>
+        <li>Game files and icons are shared between instances and cached. <span>Nothing downloads twice.</span></li>
+        <li>Minimizes itself while you play. <span>Java memory settings are tuned for low-end CPUs.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="caption">Sign-in</p>
+      <h2>How sign-in works</h2>
+      <div class="panel">
+        <p>FeatherLaunch uses Microsoft's standard <em>device code</em> sign-in. The launcher shows a short
+          code, and you enter it on Microsoft's own website in your browser. The launcher never sees your
+          password.</p>
+        <p>After sign-in it uses Xbox Live and the Minecraft services API only to confirm that your account
+          owns Minecraft: Java Edition, read your Minecraft username, UUID and skin, start the game as you,
+          and change your skin when you ask it to.</p>
+      </div>
+    </div>
   </section>
 
   <section id="privacy">
-    <h2>Privacy</h2>
-    <ul>
-      <li><strong>No accounts, analytics or telemetry.</strong> FeatherLaunch has no servers of its own and collects no data.</li>
-      <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <strong>Windows Credential Manager</strong>.
-        Minecraft access tokens are kept in memory only.</li>
-      <li>Removing an account in the launcher deletes its stored credential.</li>
-      <li>The launcher connects only to the services it needs: Microsoft / Xbox Live and Mojang (sign-in, game files),
-        Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</li>
-    </ul>
+    <div class="wrap">
+      <p class="caption">Privacy</p>
+      <h2>Your data stays on your PC</h2>
+      <ul class="list">
+        <li><b>No accounts, analytics or telemetry.</b> <span>FeatherLaunch has no servers of its own and collects no data.</span></li>
+        <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <b>Windows Credential Manager</b>. <span>Minecraft access tokens are kept in memory only.</span></li>
+        <li>Removing an account in the launcher deletes its stored credential.</li>
+        <li>The launcher connects only to the services it needs: <span>Microsoft / Xbox Live and Mojang (sign-in, game files), Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</span></li>
+      </ul>
+    </div>
   </section>
 
-  <section>
-    <h2>Download</h2>
-    <p class="note">FeatherLaunch is in early development. Public downloads will be listed on this page when the first release is ready.</p>
+  <section id="download">
+    <div class="wrap">
+      <p class="caption">Download</p>
+      <h2>Coming soon</h2>
+      <div class="note"><span class="dot" aria-hidden="true"></span>
+        FeatherLaunch is in early development. Public downloads will be listed here when the first release is ready.</div>
+    </div>
   </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>FeatherLaunch is developed by <a href="https://github.com/mahmoudalnkeeb">mahmoudalnkeeb</a> on GitHub.
-      For questions or issues, open an issue in <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/issues">this site's repository</a>.</p>
+  <section id="contact">
+    <div class="wrap">
+      <p class="caption">Contact</p>
+      <h2>Questions?</h2>
+      <p class="lead">FeatherLaunch is developed by <a href="https://github.com/mahmoudalnkeeb">mahmoudalnkeeb</a> on GitHub.
+        For questions or issues, open an issue in <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/issues">this site's repository</a>.</p>
+    </div>
   </section>
-
-  <footer>
-    NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
-    Minecraft is a trademark of Mojang Synergies AB.
-  </footer>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+      Minecraft is a trademark of Mojang Synergies AB.</span>
+    <span>FeatherLaunch</span>
+  </div>
+</footer>
 </body>
 </html>
