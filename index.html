@@ -5,183 +5,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>FeatherLaunch</title>
-<meta name="description" content="FeatherLaunch is a lightweight Minecraft: Java Edition launcher for low-end Windows and Linux PCs.">
+<meta name="description" content="FeatherLaunch is a free Minecraft: Java Edition launcher for older Windows and Linux PCs, with mods, modpacks and Microsoft sign-in.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-256.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="bar">
   <div class="wrap">
-    <img class="mark" src="icon.svg" width="26" height="26" alt="">
-    <span class="name">FeatherLaunch</span>
-    <nav aria-label="Sections">
+    <a class="brand" href="./"><img src="icon.svg" width="24" height="24" alt="">FeatherLaunch</a>
+    <nav aria-label="Main">
       <a href="#features">Features</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#contact">Contact</a>
+      <a href="#download">Download</a>
+      <a href="#support">Support</a>
     </nav>
   </div>
 </header>
 
-<main>
-  <div class="wrap hero">
-    <p class="caption">Minecraft: Java Edition launcher</p>
-    <h1>Your whole library,<br>light enough for any PC.</h1>
-    <p class="tagline">FeatherLaunch is a free launcher written in Rust for low-end Windows and Linux PCs.
-      Mods, modpacks and Microsoft sign-in, without slowing your game down.</p>
-    <div class="actions">
-      <a class="btn primary" href="#download">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg>
-        Download
-      </a>
-      <a class="btn secondary" href="#features">See features</a>
-    </div>
-    <div class="chips">
-      <span class="chip"><b>~50 MB</b> RAM</span>
-      <span class="chip"><b>~6 MB</b> program</span>
-      <span class="chip"><b>0%</b> CPU when idle</span>
-      <span class="chip">Runs on <b>Intel HD 4000</b></span>
-      <span class="chip"><b>Windows</b> · <b>Linux</b></span>
-    </div>
-    <figure class="shot">
-      <img src="screenshot.png" width="1060" height="680"
-        alt="FeatherLaunch library: a dark window with a Continue playing banner for the Fabulously Optimized modpack, a Play button, and the instance card below">
-      <figcaption>The library, with a Fabulously Optimized modpack installed from Modrinth.</figcaption>
-    </figure>
+<main id="main">
+  <div class="wrap intro">
+    <h1>A Minecraft launcher for older PCs</h1>
+    <p>FeatherLaunch runs Minecraft: Java Edition with mods and modpacks from Modrinth, and stays out of
+      the game's way: about 50 MB of memory and almost no CPU while it waits. Free, for Windows and Linux.</p>
+    <p class="actions">
+      <a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch.exe">Download for Windows</a>
+      <a class="btn" href="#download">Linux and other options</a>
+    </p>
+    <p class="fine">Version 0.1.0 · 6.4 MB · no installer</p>
   </div>
 
-  <section id="features">
-    <div class="wrap">
-      <p class="caption">Features</p>
-      <h2>Everything you need, nothing you don't</h2>
-      <p class="lead">FeatherLaunch covers what players use launchers like Prism for, in a quiet
-        game-library interface that keeps memory and CPU free for Minecraft.</p>
-      <div class="grid">
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="0.5"/><rect x="9" y="2" width="5" height="5" rx="0.5"/><rect x="2" y="9" width="5" height="5" rx="0.5"/><rect x="9" y="9" width="5" height="5" rx="0.5"/></svg></div>
-          <h3>Instances</h3>
-          <p>Separate game folders with their own version, memory, Java and icon. Group, search, duplicate and track play time.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 5h3V3.5l2-1 2 1V5h3v3h-1.5v2H13v3H3z"/></svg></div>
-          <h3>Mod loaders</h3>
-          <p>Vanilla, Fabric, Quilt, Forge and NeoForge, installed for you.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.2"/><path d="m10.2 10.2 3.3 3.3"/></svg></div>
-          <h3>Modrinth</h3>
-          <p>Browse mods, resource packs and shaders with icons. Install with dependencies, update, enable or disable.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10"/></svg></div>
-          <h3>Modpacks</h3>
-          <p>Install Modrinth modpacks in one click, or import a <code>.mrpack</code> file. The pack's icon comes along.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="5.5" r="2.8"/><path d="M2.5 14l1-3 2.5-1.2h4l2.5 1.2 1 3"/></svg></div>
-          <h3>Microsoft sign-in</h3>
-          <p>Sign in with the Microsoft account that owns Minecraft. Stays signed in, shows your skin and lets you change it.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.2"/><circle cx="8" cy="8" r="4.6"/></svg></div>
-          <h3>Automatic Java</h3>
-          <p>Finds or downloads the right Java for each Minecraft version.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="0.5"/><path d="M5 6.5 7 8 5 9.5M8.5 10H11"/></svg></div>
-          <h3>Game log</h3>
-          <p>Live logs with filtering, crash reports and a stop button, right on the instance page.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M2 4h4l1.5 1.5H14v7H2z"/></svg></div>
-          <h3>Portable</h3>
-          <p>One small program, no installer: an <code>.exe</code> on Windows, a single binary on Linux. Can run from a USB stick.</p>
-        </div>
-      </div>
-    </div>
+  <div class="wrap">
+    <img class="shot" src="screenshot.png" width="1060" height="680"
+      alt="The FeatherLaunch library: a Continue playing banner for the Fabulously Optimized modpack with a Play button, and the instance card below">
+  </div>
+
+  <section id="features" class="wrap">
+    <h2>What it does</h2>
+    <dl class="features">
+      <div><dt>Instances</dt><dd>Separate game folders, each with its own Minecraft version, memory, Java and icon. Group them, search, duplicate, and see your play time.</dd></div>
+      <div><dt>Mod loaders</dt><dd>Fabric, Quilt, Forge and NeoForge are installed for you. Vanilla works too.</dd></div>
+      <div><dt>Modrinth</dt><dd>Search mods, resource packs and shaders. Required dependencies install with them, and updates are one click.</dd></div>
+      <div><dt>Modpacks</dt><dd>Install a Modrinth modpack from inside the launcher, or import a <code>.mrpack</code> file.</dd></div>
+      <div><dt>Microsoft sign-in</dt><dd>Sign in once and stay signed in. Your skin shows in the launcher, and you can change it there.</dd></div>
+      <div><dt>Java</dt><dd>The right Java for each Minecraft version is found on your PC or downloaded automatically.</dd></div>
+      <div><dt>Game log</dt><dd>Live log with a filter, a stop button and the latest crash report, on the instance page.</dd></div>
+      <div><dt>Portable</dt><dd>One file, no installer. Put an empty <code>portable.txt</code> next to it to keep everything in one folder, for example on a USB stick.</dd></div>
+    </dl>
   </section>
 
-  <section>
-    <div class="wrap split">
+  <section class="wrap split">
+    <div>
+      <h2>Mods, with names and icons</h2>
+      <p>Each instance has a page for its settings, mods, resource packs, shaders, worlds and log.
+        Mods show their real names and icons, even ones you copied in by hand, and you can switch one
+        off without deleting it.</p>
+    </div>
+    <img src="mods.png" width="1060" height="680" loading="lazy"
+      alt="The instance page for Fabulously Optimized, listing 46 installed mods with icons and on/off switches">
+  </section>
+
+  <section class="wrap">
+    <h2>Why it's light</h2>
+    <p>Measured on Windows with an Intel Core i7-4790S and Intel HD 4600 graphics:</p>
+    <table class="facts">
+      <tr><th scope="row">Memory</th><td>about 50 MB</td></tr>
+      <tr><th scope="row">CPU while idle</th><td>near 0%</td></tr>
+      <tr><th scope="row">Download</th><td>6.4 MB on Windows, 6.3 MB on Linux</td></tr>
+    </table>
+    <p>It only redraws when something changes, uses OpenGL that old integrated graphics handle, and
+      shares game files between instances so nothing downloads twice. While you play, it minimizes
+      itself, and its default Java settings are tuned for slower CPUs.</p>
+  </section>
+
+  <section id="download" class="wrap">
+    <h2>Download</h2>
+    <p>Version 0.1.0. You need a Microsoft account that owns Minecraft: Java Edition. Once it has
+      signed in, you can also play offline.</p>
+    <div class="downloads">
       <div>
-        <p class="caption">Mods</p>
-        <h2>Your mods, at a glance</h2>
-        <p class="lead">Every instance has its own page for settings, mods, resource packs, shaders,
-          worlds and the game log. Mods show their real names and icons, even ones you added by hand,
-          and can be switched off without deleting them.</p>
+        <h3>Windows</h3>
+        <p>Windows 10 or 11, 64-bit.</p>
+        <p><a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch.exe">featherlaunch.exe</a></p>
+        <p class="fine">Run it from any folder. The program isn't code-signed yet, so Windows may show a
+          SmartScreen warning: choose <b>More info</b>, then <b>Run anyway</b>.</p>
       </div>
-      <img src="mods.png" width="1060" height="680" loading="lazy"
-        alt="The instance page for Fabulously Optimized: tabs for Settings, Mods, Resource packs, Shaders, Worlds and Log, and a list of 46 installed mods with icons and on/off switches">
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <p class="caption">Built for slow PCs</p>
-      <h2>Light by design</h2>
-      <ul class="list">
-        <li>Uses about <b>50 MB of RAM</b>, and the program itself is about <b>6 MB</b>. <span>Fonts come from the system and icons are drawn in code, so nothing extra is bundled.</span></li>
-        <li>Draws only when something changes. <span>It sits at almost 0% CPU while idle.</span></li>
-        <li>Runs on old integrated graphics such as Intel HD 4000/4600. <span>OpenGL, no shadows, no animation loops.</span></li>
-        <li>Game files and icons are shared between instances and cached. <span>Nothing downloads twice.</span></li>
-        <li>Minimizes itself while you play. <span>Java memory settings are tuned for low-end CPUs.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <p class="caption">Sign-in</p>
-      <h2>How sign-in works</h2>
-      <div class="panel">
-        <p>FeatherLaunch uses Microsoft's standard <em>device code</em> sign-in. The launcher shows a short
-          code, and you enter it on Microsoft's own website in your browser. The launcher never sees your
-          password.</p>
-        <p>After sign-in it uses Xbox Live and the Minecraft services API only to confirm that your account
-          owns Minecraft: Java Edition, read your Minecraft username, UUID and skin, start the game as you,
-          and change your skin when you ask it to.</p>
+      <div>
+        <h3>Linux</h3>
+        <p>64-bit, glibc 2.35 or newer (Ubuntu 22.04, Fedora 36, Debian 12 and later), X11 or Wayland.</p>
+        <p><a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch-linux-x64.tar.gz">featherlaunch-linux-x64.tar.gz</a></p>
+        <p class="fine">Extract it anywhere and run <code>featherlaunch/featherlaunch</code>. It adds itself
+          to your app menu. To stay signed in it needs a keyring such as GNOME Keyring or KWallet.</p>
       </div>
     </div>
+    <p class="fine">SHA-256 checksums: <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/SHA256SUMS.txt">SHA256SUMS.txt</a>
+      · <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases">All releases</a></p>
   </section>
 
-  <section id="privacy">
-    <div class="wrap">
-      <p class="caption">Privacy</p>
-      <h2>Your data stays on your PC</h2>
-      <ul class="list">
-        <li><b>No accounts, analytics or telemetry.</b> <span>FeatherLaunch has no servers of its own and collects no data.</span></li>
-        <li>Your Microsoft sign-in (refresh token) is stored only on your computer, in <b>Windows Credential Manager</b>, or on Linux in your desktop's keyring (GNOME Keyring, KWallet). <span>Minecraft access tokens are kept in memory only.</span></li>
-        <li>Removing an account in the launcher deletes its stored credential.</li>
-        <li>The launcher connects only to the services it needs: <span>Microsoft / Xbox Live and Mojang (sign-in, game files), Modrinth (mods), Eclipse Adoptium (Java), and the Fabric, Quilt, Forge and NeoForge download servers.</span></li>
-      </ul>
-      <p style="margin-top: 16px"><a class="btn secondary" href="privacy.html">Read the full privacy policy</a></p>
-    </div>
+  <section class="wrap">
+    <h2>Sign-in and privacy</h2>
+    <p>You sign in on Microsoft's own website with a short code, so FeatherLaunch never sees your
+      password. Your sign-in is kept in Windows Credential Manager or your Linux keyring. The launcher
+      has no servers, accounts, analytics or telemetry; it only talks to Microsoft, Mojang, Modrinth
+      and the Java and mod loader download sites.
+      <a href="privacy.html">Read the privacy policy</a>.</p>
   </section>
 
-  <section id="download">
-    <div class="wrap">
-      <p class="caption">Download</p>
-      <h2>Coming soon</h2>
-      <div class="note"><span class="dot" aria-hidden="true"></span>
-        <span>FeatherLaunch is in early development. Downloads for Windows (<code>.exe</code>) and Linux (<code>.tar.gz</code>, X11 or Wayland) will be listed here when the first release is ready.</span></div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <p class="caption">Contact</p>
-      <h2>Questions?</h2>
-      <p class="lead">FeatherLaunch is developed by <a href="https://github.com/mahmoudalnkeeb">mahmoudalnkeeb</a> on GitHub.
-        For questions or issues, open an issue in <a href="https://github.com/mahmoudalnkeeb/featherlaunch-site/issues">this site's repository</a>.</p>
-    </div>
+  <section id="support" class="wrap">
+    <h2>Support</h2>
+    <p>Questions, bugs or something not working: email
+      <a href="mailto:support@mahmoudalnakeeb.com">support@mahmoudalnakeeb.com</a>.</p>
+    <p>For a bug, please include your Windows or Linux version, what you were doing, and the file
+      <code>launcher.log</code> from the launcher's data folder (in the launcher: Settings, then the
+      folder button). The log holds error messages only, no passwords or sign-in tokens.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
-      Minecraft is a trademark of Mojang Synergies AB.</span>
-    <span><a href="privacy.html">Privacy Policy</a></span>
+    <p>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.
+      Minecraft is a trademark of Mojang Synergies AB.</p>
+    <p><a href="privacy.html">Privacy policy</a> · <a href="mailto:support@mahmoudalnakeeb.com">support@mahmoudalnakeeb.com</a></p>
   </div>
 </footer>
 </body>
