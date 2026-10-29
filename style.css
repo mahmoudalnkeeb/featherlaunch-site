@@ -51,8 +51,8 @@ code {
 .bar nav { margin-left: auto; display: flex; }
 .bar nav a { color: var(--muted); font-size: 14px; padding: 6px 10px; border-radius: var(--r-sm); text-decoration: none; }
 .bar nav a:hover { background: var(--hover); color: var(--text); }
-/* Phones: the logo and two links fit; Features is one scroll away anyway. */
-@media (max-width: 480px) { .bar nav a[href$="#features"] { display: none; } }
+/* Phones: only the logo and two links fit. Help sits right above Donate, so one link reaches both. */
+@media (max-width: 520px) { .bar nav a[href$="#features"], .bar nav a[href$="#help"] { display: none; } }
 
 .btn {
   display: inline-block; padding: 8px 16px; border-radius: var(--r-md);
@@ -72,7 +72,10 @@ code {
 
 /* `.wrap` sets margin: 0 auto, so the class is needed to win. */
 section.wrap { margin-top: 72px; }
-section > p, .split p { color: var(--muted); }
+section > p, .split p, section > ul { color: var(--muted); }
+section > ul { padding-left: 20px; max-width: 68ch; }
+section > ul li { margin: 6px 0; }
+section b { color: var(--text); }
 
 /* Features as a plain two-column list, divided by rules. */
 .features { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 40px; margin: 8px 0 0; }
