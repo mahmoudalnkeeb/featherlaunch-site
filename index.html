@@ -27,7 +27,7 @@
   "description": "A free, lightweight Minecraft: Java Edition launcher for older Windows and Linux PCs, with Modrinth mods and modpacks, mod loaders and Microsoft sign-in.",
   "applicationCategory": "GameApplication",
   "operatingSystem": "Windows 10, Windows 11, Linux",
-  "softwareVersion": "0.2.2",
+  "softwareVersion": "0.3.0",
   "fileSize": "6.9 MB",
   "downloadUrl": "https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest",
   "screenshot": "https://featherlaunch.mahmoudalnakeeb.com/screenshot.png",
@@ -72,12 +72,12 @@
       <a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch.exe"><svg class="i" aria-hidden="true"><use href="#i-windows"/></svg>Download for Windows</a>
       <a class="btn" href="#download"><svg class="i" aria-hidden="true"><use href="#i-linux"/></svg>Linux and other options</a>
     </p>
-    <p class="fine">Version 0.2.2 · 6.9 MB · no installer · updates itself</p>
+    <p class="fine">Version 0.3.0 · 6.9 MB · no installer · updates itself</p>
   </div>
 
   <div class="wrap">
-    <img class="shot" src="screenshot.png" width="1060" height="680" fetchpriority="high"
-      alt="The FeatherLaunch library: a Continue playing banner for the Fabulously Optimized modpack with a Play button, and the instance card below">
+    <img class="shot" src="screenshot.png" width="1484" height="997" fetchpriority="high"
+      alt="The FeatherLaunch library: a bar for the selected Fabulously Optimized instance with Play and Manage buttons, above a grid of eight instances with their icons, grouped and filterable by loader">
   </div>
 
   <section id="features" class="wrap">
@@ -100,11 +100,37 @@
       <ul>
         <li>Real names and icons, even for mods you copied in by hand</li>
         <li>Switch a mod off without deleting it</li>
-        <li>Settings, mods, resource packs, shaders, worlds and log on one page</li>
+        <li>See which mods have updates, and update them all at once</li>
       </ul>
     </div>
-    <img src="mods.png" width="1060" height="680" loading="lazy"
-      alt="The instance page for Fabulously Optimized, listing 46 installed mods with icons and on/off switches">
+    <img src="mods.png" width="1484" height="997" loading="lazy"
+      alt="The instance page for Fabulously Optimized, listing installed mods with icons, on/off switches and new versions for two of them, with an Update all button">
+  </section>
+
+  <section class="wrap split flip">
+    <div>
+      <h2>Modrinth, built in</h2>
+      <ul>
+        <li>Search mods, resource packs and shaders for this instance's version and loader</li>
+        <li>Read about a project and pick a version before you install</li>
+        <li>Required dependencies install with it</li>
+      </ul>
+    </div>
+    <img src="browse.png" width="1484" height="997" loading="lazy"
+      alt="Browsing Modrinth from an instance: a list of popular mods on the left and details for Sodium on the right, with a version picker and an Install button">
+  </section>
+
+  <section class="wrap split">
+    <div>
+      <h2>A new instance in a few clicks</h2>
+      <ul>
+        <li>Every Minecraft release, with the latest already picked</li>
+        <li>Choose Fabric, Quilt, Forge or NeoForge, or stay on Vanilla</li>
+        <li>Or install a Modrinth modpack, or import a <code>.mrpack</code> file</li>
+      </ul>
+    </div>
+    <img src="new-instance.png" width="1484" height="997" loading="lazy"
+      alt="The New instance page: a list of Minecraft versions on the left, and name, group, mod loader and Create on the right">
   </section>
 
   <section class="wrap">
@@ -125,7 +151,7 @@
 
   <section id="download" class="wrap">
     <h2>Download</h2>
-    <p>Version 0.2.2. You need a Microsoft account that owns Minecraft: Java Edition. Once it has
+    <p>Version 0.3.0. You need a Microsoft account that owns Minecraft: Java Edition. Once it has
       signed in, you can also play offline.</p>
     <div class="downloads">
       <div>
@@ -133,8 +159,8 @@
         <p>Windows 10 or 11, 64-bit.</p>
         <p><a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch.exe">featherlaunch.exe</a></p>
         <div class="hash">
-          <span class="hash-head">SHA-256<a href="https://www.virustotal.com/gui/file/2c30c346a0e4ad086d24d504e1349256a1262d6cff3b97fdb728e2dcc2b4f4d6" rel="noopener" aria-label="VirusTotal report for featherlaunch.exe">VirusTotal report</a><button type="button" hidden aria-label="Copy the SHA-256 of featherlaunch.exe"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></span>
-          <code>2c30c346a0e4ad086d24d504e1349256a1262d6cff3b97fdb728e2dcc2b4f4d6</code>
+          <span class="hash-head">SHA-256<button type="button" hidden aria-label="Copy the SHA-256 of featherlaunch.exe"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></span>
+          <code>cb6c14f7eb6ade5f612416d1289dc9bdcf7fa9887d3554c4523af47dbfc93d7f</code>
         </div>
         <p class="fine">Keep it in a folder of your own, not Program Files, so it can update itself. It
           isn't code-signed yet, so Windows may show a SmartScreen warning: choose <b>More info</b>, then
@@ -146,8 +172,8 @@
         <p>64-bit, glibc 2.35 or newer (Ubuntu 22.04, Fedora 36, Debian 12 and later), X11 or Wayland.</p>
         <p><a class="btn primary" href="https://github.com/mahmoudalnkeeb/featherlaunch-site/releases/latest/download/featherlaunch-linux-x64.tar.gz">featherlaunch-linux-x64.tar.gz</a></p>
         <div class="hash">
-          <span class="hash-head">SHA-256<a href="https://www.virustotal.com/gui/file/1ce755e0cefec650ba8c6858e0515fc44fe0b5422f53121502e4f842014861f3" rel="noopener" aria-label="VirusTotal report for featherlaunch-linux-x64.tar.gz">VirusTotal report</a><button type="button" hidden aria-label="Copy the SHA-256 of featherlaunch-linux-x64.tar.gz"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></span>
-          <code>1ce755e0cefec650ba8c6858e0515fc44fe0b5422f53121502e4f842014861f3</code>
+          <span class="hash-head">SHA-256<button type="button" hidden aria-label="Copy the SHA-256 of featherlaunch-linux-x64.tar.gz"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button></span>
+          <code>e8abf2783f7e1d60a1b88d9b1e4abf88f14e4e1d44e2f6fc1ae436cdc7b2a73d</code>
         </div>
         <p class="fine">Extract it anywhere and run <code>featherlaunch/featherlaunch</code>. It adds itself
           to your app menu. To stay signed in it needs a keyring such as GNOME Keyring or KWallet.</p>
@@ -183,7 +209,7 @@
       <ul class="rows">
         <li><b>Your system</b><span>Your Windows or Linux version.</span></li>
         <li><b>What happened</b><span>What you were doing when it went wrong.</span></li>
-        <li><b>The log file</b><span><code>launcher.log</code> from the launcher's data folder: in the launcher, open Settings, then the folder button.</span></li>
+        <li><b>The log file</b><span><code>launcher.log</code> from the launcher's data folder: in the launcher, open Settings, then choose Open under Data folder.</span></li>
       </ul>
       <p class="fine">The log holds error messages only, no passwords or sign-in tokens.</p>
     </div>
