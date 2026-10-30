@@ -93,7 +93,7 @@ code {
 }
 .bar nav a:hover { background: var(--hover); color: var(--text); }
 /* Phones: only the logo and two links fit. Help sits right above Donate, so one link reaches both. */
-@media (max-width: 480px) { .bar nav a[href$="#features"], .bar nav a[href$="#help"] { display: none; } }
+@media (max-width: 560px) { .bar nav a[href$="#features"], .bar nav a[href$="#help"], .bar nav a[href*="github.com"] { display: none; } }
 
 /* Buttons are words, and the only icons are logos: the systems' and Ko-fi's. Cyan is for the one
    primary button in view. */
