@@ -11,6 +11,8 @@
   --accent: #74dde8;
   --accent-hover: #9ae8f0;
   --on-accent: #0b1214;
+  --ok: #5dd39e;
+  --kofi: #ff5e5b; /* Ko-fi's brand color, for its button only */
   --r-sm: 2px;
   --r-md: 3px;
   --r-lg: 4px;
@@ -39,6 +41,15 @@ code {
 }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
 .fine { color: var(--muted); font-size: 14px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Icons come from the sprite at the top of index.html and take the color of the text around them.
+   The hidden attribute doesn't apply to SVG, so the sprite needs this rule. */
+.sprite { display: none; }
+.i {
+  width: 20px; height: 20px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
 
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 8px; z-index: 20; background: var(--raised); padding: 6px 12px; }
@@ -55,10 +66,11 @@ code {
 @media (max-width: 520px) { .bar nav a[href$="#features"], .bar nav a[href$="#help"] { display: none; } }
 
 .btn {
-  display: inline-block; padding: 8px 16px; border-radius: var(--r-md);
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--r-md);
   border: 1px solid var(--faint); color: var(--text); background: var(--raised);
   font-weight: 600; font-size: 15px; text-decoration: none;
 }
+.btn .i { width: 18px; height: 18px; }
 .btn:hover { color: var(--text); border-color: var(--muted); background: var(--hover); }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
@@ -72,9 +84,7 @@ code {
 
 /* `.wrap` sets margin: 0 auto, so the class is needed to win. */
 section.wrap { margin-top: 72px; }
-section > p, .split p, section > ul { color: var(--muted); }
-section > ul { padding-left: 20px; max-width: 68ch; }
-section > ul li { margin: 6px 0; }
+section > p, .split p { color: var(--muted); }
 section b { color: var(--text); }
 
 /* Features as a plain two-column list, divided by rules. */
@@ -84,19 +94,87 @@ section b { color: var(--text); }
 .features dd { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
 @media (max-width: 680px) { .features { grid-template-columns: 1fr; } }
 
+/* Divided rows, like the features list. */
+.rows { list-style: none; margin: 0; padding: 0; color: var(--muted); }
+.rows li { padding: 12px 0; border-top: 1px solid var(--border); }
+.rows b { display: block; }
+
+.help { margin-top: 16px; padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); }
+.contact { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.contact p { margin: 0; }
+.help h3 { margin-bottom: 10px; }
+.help .rows li { display: grid; grid-template-columns: 170px 1fr; gap: 2px 16px; }
+.help .fine { margin: 0; padding-top: 12px; max-width: none; border-top: 1px solid var(--border); }
+@media (max-width: 680px) { .help .rows li { grid-template-columns: 1fr; } }
+
+/* The one place with Ko-fi's own color, as a soft glow behind its button. */
+.support {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; padding: 36px;
+  background: radial-gradient(520px 340px at 0% 100%, rgb(255 94 91 / 0.16), transparent 72%), var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r-lg);
+}
+.support h2 { font-size: 28px; }
+.support p { margin-bottom: 22px; color: var(--muted); }
+.support .rows li:first-child { border-top: 0; }
+.btn.kofi { padding: 11px 20px; font-size: 16px; color: #1b0a0a; background: var(--kofi); border-color: var(--kofi); }
+.btn.kofi:hover { color: #1b0a0a; background: #ff7c79; border-color: #ff7c79; }
+.btn.kofi .i { width: 24px; height: 24px; }
+@media (max-width: 760px) { .support { grid-template-columns: 1fr; gap: 24px; padding: 24px; } }
+
+/* A title and one short line. */
+.points { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 32px; list-style: none; margin: 20px 0 16px; padding: 0; }
+.points li { display: flex; gap: 14px; }
+.points h3 { font-size: 16px; margin: 0 0 2px; }
+.points p { margin: 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 680px) { .points { grid-template-columns: 1fr; } }
+
+.split ul { margin: 0; padding-left: 20px; color: var(--muted); }
+.split li { margin: 6px 0; }
+
 .split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: center; }
 .split img { display: block; border: 1px solid var(--border); border-radius: var(--r-lg); }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
 
-.facts { border-collapse: collapse; margin: 4px 0 16px; }
-.facts th, .facts td { text-align: left; padding: 8px 32px 8px 0; border-bottom: 1px solid var(--border); }
-.facts th { color: var(--muted); font-weight: 400; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 16px 0 10px; padding: 0; }
+.stats li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; color: var(--muted); font-size: 14px; }
+.stats b { display: block; color: var(--text); font-size: 30px; line-height: 1.2; }
+@media (max-width: 680px) { .stats { grid-template-columns: 1fr; } }
 
-.downloads { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0 16px; }
-.downloads > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; }
+/* Each card's five parts share rows through subgrid, so they line up whichever text wraps. */
+.downloads { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, auto); column-gap: 16px; margin: 20px 0 14px; }
+.downloads > div {
+  display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 14px; padding: 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+}
+.downloads > div > * { margin: 0; }
+.downloads h3 { display: flex; align-items: center; gap: 10px; }
+.downloads .size { margin-left: auto; color: var(--muted); font-size: 14px; font-weight: 400; }
 .downloads p { color: var(--muted); }
-.downloads .btn { font-family: Consolas, ui-monospace, monospace; font-size: 14px; }
-@media (max-width: 680px) { .downloads { grid-template-columns: 1fr; } }
+.downloads .btn { display: flex; justify-content: center; font-family: Consolas, ui-monospace, monospace; font-size: 14px; }
+.downloads-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; }
+@media (max-width: 680px) {
+  .downloads { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 16px; }
+  .downloads > div { grid-row: auto; grid-template-rows: none; }
+}
+
+/* Click anywhere in the box to copy. The hash wraps rather than truncates, so it can be compared. */
+.hash {
+  padding: 10px 12px; cursor: pointer;
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-md);
+}
+.hash:hover { border-color: var(--faint); }
+.hash-head { display: flex; justify-content: space-between; align-items: center; min-height: 24px; color: var(--muted); font-size: 13px; }
+.hash button {
+  display: inline-flex; align-items: center; gap: 6px; padding: 2px 4px; cursor: pointer;
+  background: none; border: 0; border-radius: var(--r-sm); color: var(--muted); font: inherit;
+}
+.hash-head a { margin: 0 12px 0 auto; }
+.hash button[hidden] { display: none; }
+.hash:hover button { color: var(--text); }
+.hash .i { width: 16px; height: 16px; }
+.hash code { display: block; margin-top: 2px; padding: 0; background: none; color: var(--text); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.hash.copied, .hash.copied:hover { border-color: var(--ok); }
+.hash.copied button, .hash.copied:hover button { color: var(--ok); }
 
 footer { margin-top: 80px; padding: 24px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
 footer p { max-width: none; margin: 0 0 6px; }
