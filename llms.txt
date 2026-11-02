@@ -21,3 +21,4 @@
 - [Changelog](https://featherlaunch.mahmoudalnakeeb.com/changelog/)
 - [Privacy policy](https://featherlaunch.mahmoudalnakeeb.com/privacy.html)
 - [Source code](https://github.com/mahmoudalnkeeb/featherlaunch)
+- [Discord server](https://discord.gg/GPc9praqk3)

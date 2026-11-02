@@ -115,7 +115,7 @@ code { background: var(--raised); border-radius: 3px; padding: .1em .35em; overf
 .bar nav a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: var(--muted); font-size: .9375rem; text-decoration: none; }
 .bar nav a:not(.btn):hover, .bar nav a[aria-current] { color: var(--text); }
 .bar nav .btn { margin-left: auto; }
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .bar .wrap { gap: 8px; }
   .bar nav a.hide-sm:not(.btn) { display: none; }
   .bar nav a:not(.btn) { padding: 0 8px; }
@@ -292,6 +292,8 @@ code { background: var(--raised); border-radius: 3px; padding: .1em .35em; overf
 .faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
 .faq details p { padding-bottom: 20px; color: var(--muted); }
 
+.faq-more { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 16px; }
+
 /* Support. The coral and its glow are Ko-fi's, and stay on purpose. */
 .support { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 64px; padding: clamp(24px, 5vw, 56px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
 .support::before { content: ""; position: absolute; left: -12%; bottom: -60%; width: 70%; aspect-ratio: 1; background: radial-gradient(closest-side, rgb(255 94 91 / .16), transparent); pointer-events: none; }
@@ -307,12 +309,13 @@ code { background: var(--raised); border-radius: 3px; padding: .1em .35em; overf
 .foot { margin-top: var(--section); border-top: 1px solid var(--line); padding-block: 56px 40px; }
 .foot-grid { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 32px; }
 .foot h2 { font: 600 var(--fs-label)/1.4 var(--sans); letter-spacing: 0; margin-bottom: 8px; }
-.foot li a { display: inline-flex; align-items: center; min-height: 32px; color: var(--muted); font-size: var(--fs-label); text-decoration: none; }
+.foot li a { display: inline-flex; align-items: center; max-width: 100%; min-height: 32px; overflow-wrap: anywhere; color: var(--muted); font-size: var(--fs-label); text-decoration: none; }
 .foot li a:hover { color: var(--text); }
 .foot-note { margin-top: 12px; max-width: 26em; }
 .foot-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
 #weight { font-family: var(--mono); font-size: var(--fs-caption); }
-@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 1040px) { .foot-grid { grid-template-columns: 1fr 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 640px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
 @media (pointer: coarse) { .foot li a { min-height: 44px; } }
 
 /* Plain pages: privacy, changelog, not found */
