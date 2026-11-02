@@ -1,0 +1,23 @@
+# FeatherLaunch
+
+> A free, open source Minecraft: Java Edition launcher for older Windows and Linux PCs, written in Rust. It uses about 50 MB of memory and supports Fabric, Quilt, Forge, NeoForge and Modrinth mods and modpacks. It is not an official Minecraft product.
+
+## Docs
+
+- [Getting started](https://featherlaunch.mahmoudalnakeeb.com/docs/getting-started/): Install FeatherLaunch on Windows or Linux, sign in with Microsoft and play your first Minecraft instance.
+- [Moving from Prism or MultiMC](https://featherlaunch.mahmoudalnakeeb.com/docs/moving-from-prism-or-multimc/): Import instances from Prism Launcher or MultiMC into FeatherLaunch, with what carries over and what does not.
+- [Running well on an old PC](https://featherlaunch.mahmoudalnakeeb.com/docs/old-pc-performance/): How much memory to give Minecraft on 4, 8 and 16 GB PCs, plus the settings and mods that help older hardware most.
+- [Mods and modpacks](https://featherlaunch.mahmoudalnakeeb.com/docs/mods-and-modpacks/): Install Minecraft mods and modpacks from Modrinth in FeatherLaunch, keep them updated, and add your own files.
+- [Worlds, servers and backups](https://featherlaunch.mahmoudalnakeeb.com/docs/worlds-servers-backups/): Manage Minecraft worlds, data packs, servers and screenshots, and back up or share an instance.
+- [Portable mode and storage](https://featherlaunch.mahmoudalnakeeb.com/docs/portable-and-storage/): Run FeatherLaunch from a USB stick, find its data folder, move instances to another drive and uninstall cleanly.
+- [Advanced launch options](https://featherlaunch.mahmoudalnakeeb.com/docs/advanced-launch-options/): Command line options, launch commands, JVM arguments, Java and Linux options in FeatherLaunch.
+- [Discord, proxy and accounts](https://featherlaunch.mahmoudalnakeeb.com/docs/discord-proxy-accounts/): Set up Discord presence, a proxy, several Microsoft accounts, skins and capes in FeatherLaunch.
+- [Fixing problems](https://featherlaunch.mahmoudalnakeeb.com/docs/fixing-problems/): Fix Minecraft crashes, Java errors, sign-in problems, failed downloads and Windows warnings in FeatherLaunch.
+- [FAQ](https://featherlaunch.mahmoudalnakeeb.com/docs/faq/): Common questions about FeatherLaunch: price, safety, privacy, offline play, supported systems and mod loaders.
+
+## Project
+
+- [Download](https://featherlaunch.mahmoudalnakeeb.com/#download)
+- [Changelog](https://featherlaunch.mahmoudalnakeeb.com/changelog/)
+- [Privacy policy](https://featherlaunch.mahmoudalnakeeb.com/privacy.html)
+- [Source code](https://github.com/mahmoudalnkeeb/featherlaunch)
