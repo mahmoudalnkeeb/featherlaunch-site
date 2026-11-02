@@ -16,7 +16,8 @@ build step: edit a page and push.
 | `assets/css/` | `site.css` for every page, `docs.css` for `/docs` |
 | `assets/js/` | `site.js` for every page, `docs.js` for `/docs` |
 | `assets/img/app/` | Launcher screenshots as WebP, 1484 and 760 px wide |
-| `assets/img/social.jpg` | Link preview image, 1200×630 |
+| `assets/img/social-<hash>.jpg` | Link preview image, 1200×630. The name holds the first 10 characters of its SHA-256 |
+| `social.jpg`, `assets/img/social.jpg` | Copies at older addresses, so cached pages never show a broken preview. Keep them |
 | `assets/brand/` | Logos, icons and social images, made by `assets/make-brand.ps1` |
 | `sitemap.xml`, `robots.txt`, `site.webmanifest`, `llms.txt` | Search engines and browsers |
 
@@ -33,5 +34,6 @@ Add a new page to `sitemap.xml` and `llms.txt` too.
 3. Add the version's notes to the top of `changelog/index.html`, and move the Known issues list up
    to it.
 4. Update `lastmod` in `sitemap.xml` for the pages you changed.
-5. If `assets/img/social.jpg` changes, bump its `?v=` in every page, because link previews cache by
-   URL.
+5. If the link preview image changes, save it under a new `social-<hash>.jpg` name, update the
+   `og:image` and `twitter:image` tags and the JSON-LD in every page, and replace both older copies.
+   Link previews cache by address and some ignore `?v=`, so the file name is what forces a new image.
